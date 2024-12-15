@@ -2,6 +2,7 @@
     @foreach($products as $product)
     <div>
         <h2>{{ $product->name }}</h2>
+        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="width: 350px; height: auto;">
         <p>{{ $product->description }}</p>
         <p>Price: {{ $product->price }}</p>
         <form method="POST" action="/cart/add">

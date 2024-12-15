@@ -2,6 +2,7 @@
     @foreach($cartItems as $item)
     <div>
         <h2>{{ $item->product->name }}</h2>
+        <img src="{{ asset('storage/' . $item->product->image) }}" alt="{{ $item->product->name }}" style="width: 350px; height: auto;">
         <p>Price: {{ $item->product->price }}</p>
         <p>Quantity: {{ $item->quantity }}</p>
         <form method="POST" action="/cart/update">
