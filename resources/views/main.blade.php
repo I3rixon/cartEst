@@ -10,7 +10,7 @@
         <p style="color: red;">{{ session('error') }}</p>
     @endif
 
-    <ul>
+    <ul class="user_list">
         @foreach($users as $user)
         <li>
             {{ $user->name }} ({{ $user->email }})

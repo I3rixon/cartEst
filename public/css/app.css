@@ -50,7 +50,7 @@ nav ul li a {
 
 .product img {
     max-height: 230px;
-    width: auto !important;!i;!;
+    width: auto !important;
 }
 
 .product button {
@@ -60,4 +60,27 @@ nav ul li a {
     border-radius: 10px;
     padding: 10px 15px;
     color: #eee;
+}
+ul.user_list li {
+    list-style: none;
+}
+
+ul.user_list {
+    padding: 0px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+ul.user_list button {
+    border: none;
+    padding: 5px 10px;
+    color: #eee;
+    background: #4f6ac6;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+main {
+    height: calc(100vh - 130px);
 }
