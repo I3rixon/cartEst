@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('title', 'Product List')
+
+@section('content')
 <div class="product_wrapper">
     @foreach($products as $product)
     <div>
@@ -14,3 +19,4 @@
     </div>
     @endforeach
 </div>
+@endsection

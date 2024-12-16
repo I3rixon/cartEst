@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User List</title>
-</head>
-<body>
-    <h1>User List</h1>
+@extends('layouts.app')
 
-    <!-- Display Flash Messages -->
+@section('title', 'Users List')
+
+@section('content')
     @if (session('success'))
         <p style="color: green;">{{ session('success') }}</p>
     @endif
@@ -28,5 +22,4 @@
         </li>
         @endforeach
     </ul>
-</body>
-</html>
+@endsection

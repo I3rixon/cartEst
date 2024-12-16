@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('title', 'Cart')
+
+@section('content')
 <div class="cart_wrapper">
     @foreach($cartItems as $item)
     <div>
@@ -19,3 +24,4 @@
     </div>
     @endforeach
 </div>
+@endsection
