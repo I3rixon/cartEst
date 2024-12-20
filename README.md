@@ -105,3 +105,6 @@ This project is licensed under the MIT License.
   - Ensured the user and product exist before running tests.
   - Used withoutMiddleware to bypass CSRF token validation for testing purposes.
   - Added assertions to verify the correct response and database state.
+
+  ## Test passed for CartController
+  ![Test Passed](images/test_passed.png)
