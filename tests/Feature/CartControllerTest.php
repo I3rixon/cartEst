@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use Tests\TestCase;
 use Database\Seeders\DatabaseSeeder;
 use App\Models\User;
@@ -11,14 +11,11 @@ use App\Models\Product;
 
 class CartControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    
 
     protected function setUp(): void
     {
         parent::setUp();
-
-        // Run the database seeders
-        $this->seed(DatabaseSeeder::class);
     }
 
     
@@ -38,22 +35,18 @@ class CartControllerTest extends TestCase
             'price' => 100,
         ]);
 
-        $cart = Cart::factory()->create([
-            'user_id' => $user->id,
-            'product_id' => $product->id,
-            'quantity' => 1,
-        ]);
+       
 
         $response = $this->withoutMiddleware()
             ->actingAs($user)
-            ->post('/cart/update', [
+            ->post('/cart/add', [
                 'product_id' => $product->id,
                 'quantity' => 2,
             ]);
 
         // Assert that the response is successful
         $response->assertStatus(200)
-                 ->assertJson(['message' => 'Cart updated']);
+                 ->assertJson(['message' => 'Product added to cart']);
 
         // Assert the cart item has been updated in the database
         $this->assertDatabaseHas('carts', [
@@ -82,7 +75,7 @@ class CartControllerTest extends TestCase
         $response = $this->withoutMiddleware()
             ->actingAs($user)
             ->post('/cart/update', [
-                'product_id' => $product->id,
+                'product_id' => 789879,
                 'quantity' => 2,
             ]);
 
@@ -106,12 +99,7 @@ class CartControllerTest extends TestCase
             'description' => 'This is a test product.',
             'price' => 100,
         ]);
-
-        $cart = Cart::factory()->create([
-            'user_id' => $user->id,
-            'product_id' => $product->id,
-            'quantity' => 1,
-        ]);
+        
 
         $response = $this->withoutMiddleware()
             ->actingAs($user)

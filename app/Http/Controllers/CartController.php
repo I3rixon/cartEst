@@ -26,15 +26,20 @@ class CartController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
-        Cart::updateOrCreate(
-            [
+        $cart = Cart::where('product_id', $request->product_id)
+            ->where('user_id', Auth::id())
+            ->first();
+
+        if ($cart) {
+            $cart->quantity += $request->quantity;
+            $cart->save();
+        } else {
+            Cart::create([
                 'product_id' => $request->product_id,
-                'user_id' => auth()->id()
-            ],
-            [
+                'user_id' => Auth::id(),
                 'quantity' => $request->quantity
-            ]
-        );
+            ]);
+        }
 
         return response()->json(['message' => 'Product added to cart']);
     }
@@ -47,7 +52,7 @@ class CartController extends Controller
         ]);
 
         $cart = Cart::where('product_id', $request->product_id)
-            ->where('user_id', auth()->id())
+            ->where('user_id', Auth::id())
             ->first();
 
         if ($cart) {
