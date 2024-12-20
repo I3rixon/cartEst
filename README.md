@@ -30,6 +30,20 @@ This is a Laravel-based e-commerce application with the following features:
 ### Utility Routes
 - **Timezone Test**: Returns the current date and time.
 
+## Screenshots
+
+### Home Page
+![Home Page](images/home_page.png)
+
+### Products Page
+![Products Page](images/products_page.png)
+
+### Cart Page
+![Cart Page](images/cart_page.png)
+
+### Login as User
+![Login as User](images/login_as_user.png)
+
 ## Installation
 
 1. Clone the repository:

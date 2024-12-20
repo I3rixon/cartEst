@@ -28,8 +28,9 @@ header {
 }
 
 nav ul li {
-    list-style: none;   
+    list-style: none;
     margin: 0 15px;
+    position: relative;
 }
 
 nav ul {
@@ -124,4 +125,15 @@ footer {
 }
 .btn {
     margin-left: 10px;
+}
+
+.cart-count {
+    background-color: red;
+    color: white;
+    padding: 1px 5px;
+    border-radius: 50%;
+    font-weight: bold;
+    position: absolute;
+    top: -8px;
+    font-size: 14px;
 }
