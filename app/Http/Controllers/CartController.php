@@ -21,13 +21,18 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        $cart = Cart::updateOrCreate(
+        $request->validate([
+            'product_id' => 'required|integer',
+            'quantity' => 'required|integer|min:1'
+        ]);
+
+        Cart::updateOrCreate(
             [
                 'product_id' => $request->product_id,
-                'user_id' => Auth::id(),
+                'user_id' => Auth::id()
             ],
             [
-                'quantity' => \DB::raw('quantity + ' . $request->quantity)
+                'quantity' => $request->quantity
             ]
         );
 
@@ -36,6 +41,11 @@ class CartController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'product_id' => 'required|integer',
+            'quantity' => 'required|integer|min:1'
+        ]);
+
         $cart = Cart::where('product_id', $request->product_id)
             ->where('user_id', Auth::id())
             ->first();
@@ -43,17 +53,27 @@ class CartController extends Controller
         if ($cart) {
             $cart->quantity = $request->quantity;
             $cart->save();
+            return response()->json(['message' => 'Cart updated']);
         }
 
-        return response()->json(['message' => 'Cart updated']);
+        return response()->json(['message' => 'Cart item not found'], 404);
     }
 
     public function remove(Request $request)
     {
-        Cart::where('product_id', $request->product_id)
-            ->where('user_id', Auth::id())
-            ->delete();
+        $request->validate([
+            'product_id' => 'required|integer'
+        ]);
 
-        return response()->json(['message' => 'Product removed from cart']);
+        $cart = Cart::where('product_id', $request->product_id)
+            ->where('user_id', Auth::id())
+            ->first();
+
+        if ($cart) {
+            $cart->delete();
+            return response()->json(['message' => 'Product removed from cart']);
+        }
+
+        return response()->json(['message' => 'Cart item not found'], 404);
     }
 }

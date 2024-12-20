@@ -3,21 +3,23 @@
 @section('title', 'Product List')
 
 @section('content')
-<div class="cart-messages"></div>
-<div class="product_wrapper">
-    @foreach($products as $product)
-    <div class="product">
-        <h2>{{ $product->name }}</h2>
-        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="width: 350px; height: auto;">
-        <p>{{ $product->description }}</p>
-        <p>Price: {{ $product->price }}</p>
-        
-            @csrf
-            <input type="hidden" name="product_id" value="{{ $product->id }}">
-            <input type="number" name="quantity" class="product-quantity" value="1" min="1">
-            <button class="add-to-cart-btn" data-id="{{ $product->id }}">Add to Cart</button>
-        
+    <div class="container">
+        <h1>Products</h1>
+        <div class="row">
+            @foreach($products as $product)
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text">{{ $product->description }}</p>
+                            <p class="card-text">${{ $product->price }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="d-flex justify-content-center">
+            {{ $products->links() }} <!-- Pagination links -->
+        </div>
     </div>
-    @endforeach
-</div>
 @endsection
