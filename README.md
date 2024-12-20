@@ -93,3 +93,15 @@ This is a Laravel-based e-commerce application with the following features:
 ## License
 
 This project is licensed under the MIT License.
+
+## Changes
+### [Unreleased] - 2023-12-20 22:15:28
+
+- Updated web.php:
+  - Added auth middleware to routes for adding, updating, and removing items from the cart.
+  - Ensured only authenticated users can access these routes.
+
+- Updated CartControllerTest:
+  - Ensured the user and product exist before running tests.
+  - Used withoutMiddleware to bypass CSRF token validation for testing purposes.
+  - Added assertions to verify the correct response and database state.
